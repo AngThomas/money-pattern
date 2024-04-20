@@ -1,0 +1,23 @@
+{
+    "name": "mkt/money-pattern",
+    "description": "Simple money pattern implementation",
+    "type": "symfony-bundle",
+    "require": {
+        "symfony/dependency-injection": "7.1.x-dev",
+        "symfony/config": "7.1.x-dev",
+        "symfony/http-kernel": "7.1.x-dev",
+        "doctrine/orm": "4.0.x-dev"
+    },
+    "license": "MIT",
+    "autoload": {
+        "psr-4": {
+            "Mkt\\MoneyPattern\\": "src/"
+        }
+    },
+    "authors": [
+        {
+            "name": "Michal Konik"
+        }
+    ],
+    "minimum-stability": "dev"
+}
