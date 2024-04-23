@@ -4,6 +4,7 @@ namespace Mkt\MoneyPattern\Service;
 
 use Doctrine\ORM\EntityManagerInterface;
 use Mkt\MoneyPattern\Entity\ExchangeRate;
+use Mkt\MoneyPattern\Interfaces\ExchangeRatesDtoInterface;
 
 class ExchangeRateManager
 {
