@@ -22,12 +22,11 @@ class SchemaBuilder
 
         try {
             $queries = $schema->toSql($connection->getDatabasePlatform());
+            foreach ($queries as $query) {
+                $connection->executeQuery($query);
+            }
         } catch(Exception $e) {
 
-        }
-
-        foreach ($queries as $query) {
-            $connection->executeQuery($query);
         }
     }
 }
