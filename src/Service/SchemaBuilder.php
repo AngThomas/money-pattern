@@ -11,18 +11,15 @@ class SchemaBuilder
 {
     private const TABLE_NAME = 'ExchangeRate';
 
-    public function __construct(private Connection $connection)
-    {
-    }
-
     /**
      * @throws Exception
      */
-    public function createTable()
+    public static function createTable(Connection $connection)
     {
         $schema = new Schema();
-        if ($schema->hasTable(self::TABLE_NAME)) {
-            throw new TableAlreadyExists('Tale ExchangeRate alreadyExists');
+
+        if ($connection->createSchemaManager()->tableExists(self::TABLE_NAME)) {
+            throw new TableAlreadyExists();
         }
 
         $table = $schema->createTable(self::TABLE_NAME);
@@ -32,25 +29,11 @@ class SchemaBuilder
         $table->addColumn('source_currency', 'float', ['notnull' => true]);
         $table->addColumn('last_update', 'datetime', ['notnull' => true]);
         $table->setPrimaryKey(['id']);
-        $queries = $schema->toSql($this->connection->getDatabasePlatform());
+        $queries = $schema->toSql($connection->getDatabasePlatform());
 
         foreach ($queries as $query) {
-            $this->connection->executeQuery($query);
+            $connection->executeQuery($query);
         }
 
-    }
-
-    /**
-     * @throws Exception
-     */
-    private function differentTableSameNameExists(): bool
-    {
-        $schemaManager = $this->connection->createSchemaManager();
-
-        if (!$schemaManager->tableExists(self::TABLE_NAME)) {
-            return false;
-        }
-        $tableColumns = $schemaManager->listTableColumns(self::TABLE_NAME);
-        return true;
     }
 }
