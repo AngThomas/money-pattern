@@ -4,7 +4,7 @@ namespace Mkt\MoneyPattern\Service;
 
 use Mkt\MoneyPattern\VO\Money;
 
-class MoneyCalculator
+final class MoneyCalculator
 {
     public function __construct(private CurrencyConverter $currencyConverter)
     {
