@@ -2,6 +2,8 @@
 
 namespace Mkt\MoneyPattern\Service;
 
+use Mkt\MoneyPattern\Exception\CurrencyNotSupportedException;
+use Mkt\MoneyPattern\Exception\DifferentCurrencyException;
 use Mkt\MoneyPattern\VO\Money;
 
 final class MoneyCalculator
@@ -10,6 +12,10 @@ final class MoneyCalculator
     {
     }
 
+    /**
+     * @throws CurrencyNotSupportedException
+     * @throws DifferentCurrencyException
+     */
     public function add(Money $money, Money $moneyToAdd): Money
     {
         if ($money->getCurrency() === $moneyToAdd->getCurrency()) {
@@ -19,6 +25,10 @@ final class MoneyCalculator
         return $money->add($convertedMoneyToAdd);
     }
 
+    /**
+     * @throws CurrencyNotSupportedException
+     * @throws DifferentCurrencyException
+     */
     public function substract(Money $money, Money $moneyToSubstract)
     {
         if ($money->getCurrency() === $moneyToSubstract->getCurrency()) {
