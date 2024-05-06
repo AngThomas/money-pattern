@@ -37,4 +37,14 @@ final class MoneyCalculator
         $convertedMoneyToSubstract = $this->currencyConverter->convertToCurrency($moneyToSubstract, $money->getCurrency());
         return $money->substract($convertedMoneyToSubstract);
     }
+
+    public function isBigger()
+    {
+
+    }
+
+    public function isSmaller()
+    {
+
+    }
 }
